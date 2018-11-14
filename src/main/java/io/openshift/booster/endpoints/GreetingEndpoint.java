@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openshift.booster.service;
+package io.openshift.booster.endpoints;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -21,15 +21,23 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import io.openshift.booster.domain.Greeting;
+import io.openshift.booster.service.TestService;
 
 @Path("/greeting")
 @Component
 public class GreetingEndpoint {
+    
+    @Autowired
+    private TestService testService;
+    
     @GET
     @Produces("application/json")
     public Greeting greeting(@QueryParam("name") @DefaultValue("World") String name) {
         final String message = String.format(Greeting.FORMAT, name);
-        return new Greeting(message);
+        return testService.obtainGretting(message);
     }
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openshift.booster.service;
+package io.openshift.booster.domain;
 
 // tag::snippet-greeting[]
 public class Greeting {
